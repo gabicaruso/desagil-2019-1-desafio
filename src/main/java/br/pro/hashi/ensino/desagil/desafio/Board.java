@@ -39,6 +39,18 @@ public class Board {
             // Note que aqui não faz sentido usar strip ou split.
             String line = reader.readLine();
 
+            int f = 0;
+
+            for (char e : line.toCharArray()) {
+                if (e == '#') {
+                    wall[i][f] = true;
+                }
+                else {
+                    wall[i][f] = false;
+                }
+                f++;
+            }
+
             System.out.println(line);
         }
 
