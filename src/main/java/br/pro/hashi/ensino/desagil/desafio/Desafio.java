@@ -42,5 +42,18 @@ public class Desafio {
             // Inicia o relógio.
             timer.start();
         });
+
+        if (HumanPlayer == Element) {
+            CpuPlayer = move(0, 0);
+            System.out.println("Humano chegou no alvo"); // era pra usar drawString
+        }
+        if (CpuPlayer == Element) {
+            HumanPlayer = move(0, 0);
+            System.out.println("Computador chegou no alvo"); // era pra usar drawString
+        }
     }
 }
+
+// Desculpa, ta tudo errado
+
+//public void DrawString (string s, System.Drawing.Font font, System.Drawing.Brush brush, float x, float y, System.Drawing.StringFormat format);
