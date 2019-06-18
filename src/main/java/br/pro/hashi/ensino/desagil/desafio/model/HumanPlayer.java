@@ -6,18 +6,26 @@ public class HumanPlayer extends Player {
     }
 
     public void moveUp() {
-        System.out.println("up");
+        if (row>0 && !board.isWall(row-1, col)) {
+            move(-1, 0);
+        }
     }
 
     public void moveRight() {
-        System.out.println("right");
+        if (col<board.getNumCols()-1 && !board.isWall(row, col+1)) {
+            move(0,1);
+        }
     }
 
     public void moveDown() {
-        System.out.println("down");
+        if (row<board.getNumRows()-1 && !board.isWall(row+1, col)){
+            move(1,0);
+        }
     }
 
     public void moveLeft() {
-        System.out.println("left");
+        if (col>0 && !board.isWall(row, col-1)) {
+            move(0,-1);
+        }
     }
 }
