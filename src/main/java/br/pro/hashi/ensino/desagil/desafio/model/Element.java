@@ -1,10 +1,10 @@
 package br.pro.hashi.ensino.desagil.desafio.model;
 
-public class Target {
-    private int row;
-    private int col;
+public class Element {
+    protected int row;
+    protected int col;
 
-    public Target(int row, int col) {
+    protected Element(int row, int col) {
         this.row = row;
         this.col = col;
     }
