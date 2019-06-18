@@ -62,7 +62,17 @@ public class View extends JPanel {
                 }
 
                 g.fillRect(j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+
             }
+        }
+
+        if (model.getWinner() == model.getHumanPlayer()) {
+            g.setColor(Color.BLACK);
+            g.drawString("você venceu", 10, 30);
+        }
+        if (model.getWinner() == model.getCpuPlayer()) {
+            g.setColor(Color.BLACK);
+            g.drawString("computador venceu", 10, 30);
         }
 
         elementsToImages.forEach((element, image) -> {

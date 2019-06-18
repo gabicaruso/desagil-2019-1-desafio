@@ -1,6 +1,7 @@
 package br.pro.hashi.ensino.desagil.desafio;
 
 import br.pro.hashi.ensino.desagil.desafio.model.CpuPlayer;
+import br.pro.hashi.ensino.desagil.desafio.model.Element;
 import br.pro.hashi.ensino.desagil.desafio.model.HumanPlayer;
 import br.pro.hashi.ensino.desagil.desafio.model.Model;
 
@@ -35,19 +36,28 @@ public class Controller implements KeyListener, ActionListener {
         // Para agir de acordo com a tecla que foi pressionada, comparamos o key code do evento com as
         // constantes disponíveis na classe KeyEvent. Uma lista dessas constantes pode ser vista em
         // https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/event/KeyEvent.html.
-        switch (event.getKeyCode()) {
-            case KeyEvent.VK_UP:
-                humanPlayer.moveUp();
-                break;
-            case KeyEvent.VK_RIGHT:
-                humanPlayer.moveRight();
-                break;
-            case KeyEvent.VK_DOWN:
-                humanPlayer.moveDown();
-                break;
-            case KeyEvent.VK_LEFT:
-                humanPlayer.moveLeft();
-                break;
+
+        if (model.getWinner() == null) {
+            switch (event.getKeyCode()) {
+                case KeyEvent.VK_UP:
+                    humanPlayer.moveUp();
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    humanPlayer.moveRight();
+                    break;
+                case KeyEvent.VK_DOWN:
+                    humanPlayer.moveDown();
+                    break;
+                case KeyEvent.VK_LEFT:
+                    humanPlayer.moveLeft();
+                    break;
+            }
+        }
+
+        Element target = model.getTarget();
+
+        if (humanPlayer.getCol() == target.getCol() && humanPlayer.getRow() == target.getRow()) {
+            model.setWinner(humanPlayer);
         }
 
         view.repaint();
@@ -66,7 +76,13 @@ public class Controller implements KeyListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         CpuPlayer cpuPlayer = model.getCpuPlayer();
 
-        cpuPlayer.move();
+        if (model.getWinner() == null) {
+            cpuPlayer.move();
+        }
+
+        if (model.getTarget().getCol() == cpuPlayer.getCol() && model.getTarget().getRow() == cpuPlayer.getRow()) {
+            model.setWinner(cpuPlayer);
+        }
 
         view.repaint();
     }
