@@ -6,6 +6,8 @@ public class Model {
     private final HumanPlayer humanPlayer;
     private final CpuPlayer cpuPlayer;
 
+    private Player winner;
+
     public Model() {
         board = new Board("board.txt");
 
@@ -14,6 +16,16 @@ public class Model {
         humanPlayer = new HumanPlayer(0, 0, board);
 
         cpuPlayer = new CpuPlayer(8, 18, board);
+
+        winner = null;
+    }
+
+    public Player getWinner() {
+        return winner;
+    }
+
+    public void setWinner(Player winner) {
+        this.winner = winner;
     }
 
     public Board getBoard() {
