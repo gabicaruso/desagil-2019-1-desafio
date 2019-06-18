@@ -51,6 +51,28 @@ public class View extends JPanel {
     // Você nunca deve chamar esse método diretamente. O certo é chamar o método repaint.
     @Override
     public void paintComponent(Graphics g) {
+
+        Board board = model.getBoard();
+        Target target = model.getTarget();
+        HumanPlayer humanPlayer = model.getHumanPlayer();
+        CpuPlayer cpuPlayer = model.getCpuPlayer();
+
+        for (int i = 0; i < board.getNumRows(); i++){
+            for (int j = 0; j < board.getNumCols(); j++){
+                if (board.isWall(i, j)){
+                    g.setColor(Color.BLACK);
+                }
+                else{
+                    g.setColor(Color.WHITE);
+                }
+                g.fillRect(j * CELL_SIZE,i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+            }
+        }
+
+        g.drawImage(targetImage, target.getCol() * CELL_SIZE, target.getRow() * CELL_SIZE, CELL_SIZE, CELL_SIZE, this);
+        g.drawImage(humanPlayerImage, humanPlayer.getCol() * CELL_SIZE, humanPlayer.getRow() * CELL_SIZE, CELL_SIZE, CELL_SIZE, this);
+        g.drawImage(cpuPlayerImage, cpuPlayer.getCol() * CELL_SIZE, cpuPlayer.getRow() * CELL_SIZE, CELL_SIZE, CELL_SIZE, this);
+      
         Board board = model.getBoard();
 
         for (int i = 0; i < board.getNumRows(); i++) {
