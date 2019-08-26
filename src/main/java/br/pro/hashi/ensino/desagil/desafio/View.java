@@ -1,8 +1,6 @@
 package br.pro.hashi.ensino.desagil.desafio;
 
-import br.pro.hashi.ensino.desagil.desafio.model.Board;
-import br.pro.hashi.ensino.desagil.desafio.model.Element;
-import br.pro.hashi.ensino.desagil.desafio.model.Model;
+import br.pro.hashi.ensino.desagil.desafio.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -84,7 +82,25 @@ public class View extends JPanel {
                 }
 
                 g.fillRect(j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+            }
+        }
 
+        int row, col;
+
+        Target target = model.getTarget();
+        row = target.getRow();
+        col = target.getCol();
+        g.drawImage(targetImage, col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE, this);
+
+        CpuPlayer cpuPlayer = model.getCpuPlayer();
+        row = cpuPlayer.getRow();
+        col = cpuPlayer.getCol();
+        g.drawImage(cpuPlayerImage, col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE, this);
+
+        HumanPlayer humanPlayer = model.getHumanPlayer();
+        row = humanPlayer.getRow();
+        col = humanPlayer.getCol();
+        g.drawImage(humanPlayerImage, col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE, this);
             }
         }
 
